@@ -49,6 +49,7 @@ public class Inventory : MonoBehaviour
             }
             if (draggingItem) //draw item icons if dragging
             {
+                showTooltip = false;
                 GUI.DrawTexture(new Rect(Event.current.mousePosition.x, Event.current.mousePosition.y, 50, 50), draggedItem.itemIcon);
             }
         }
@@ -90,14 +91,14 @@ public class Inventory : MonoBehaviour
                     {
                        tooltip = CreatTooltip(slots[i]); //show tooltip 
                         showTooltip = true;
-                        if (e.button == 0 && e.type == EventType.MouseDrag && !draggingItem) //drag item and empty slot
+                        if (e.button == 0 && e.type == EventType.MouseDrag && !draggingItem ) //drag item and empty slot
                         {
                             draggingItem = true;
                             prevIndex = i;
                             draggedItem = slots[i];
                             inventory[i] = new Item();
                         }
-                        if (e.type == EventType.MouseUp && draggingItem)
+                        if (e.type == EventType.MouseUp && draggingItem )
                         {
                             inventory[prevIndex] = inventory[i];
                             inventory[i] = draggedItem;
